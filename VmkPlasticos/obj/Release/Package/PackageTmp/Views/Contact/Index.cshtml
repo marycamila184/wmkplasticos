@@ -1,0 +1,138 @@
+﻿@model ContactModel
+
+@{
+    ViewBag.Title = "Contato";
+}
+
+<section class="post-wrapper-top dm-shadow">
+    <div class="container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li>Contato</li>
+            </ul><!-- end breadcrumb -->
+            <h2>Contato</h2>
+        </div><!-- end col-12 -->
+    </div><!-- end container -->
+</section><!-- end post-wrapper-top -->
+
+
+<section id="contact_page" class="section-single">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2 class="bigtitle">Nossos contatos</h2>
+            <h4 class="lead">Caso tenha alguma dúvida, sugestão ou reclamação entre em contato conosco.</h4>
+        </div><!-- end section-title -->
+        <div class="fullwidth-post-wrapper col-lg-12">
+            <div class="general_wrapper clearfix">
+                <div class="col-lg-7 col-md-7 col-sm-12 clearfix">
+                    <div class="widget-title text-center"><h3>CONTATO</h3></div>
+                    @if (ViewBag.MessageSuccess != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-success">
+                                    <strong>@ViewBag.MessageSuccess</strong>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (ViewBag.MessageError != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger">
+                                    <strong>@ViewBag.MessageError</strong>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @using (Html.BeginForm("SendEmailContact", "Contact", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(true)
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", placeholder = "Nome" })
+                                @Html.ValidationMessageFor(n => n.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                                @Html.ValidationMessageFor(n => n.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                @Html.TextBoxFor(m => m.Telefone, new { @class = "form-control", placeholder = "Telefone" })
+                                @Html.ValidationMessageFor(n => n.Telefone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                @Html.TextBoxFor(m => m.Assunto, new { @class = "form-control", placeholder = "Assunto" })
+                                @Html.ValidationMessageFor(n => n.Assunto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                @Html.TextAreaFor(m => m.Mensagem, new { @class = "form-control", placeholder = "Sua mensagem ...", rows = "6" })
+                                @Html.ValidationMessageFor(n => n.Mensagem, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="text-center">
+                                    <input type="submit" value="ENVIAR" id="submit" class="btn btn-primary">
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div><!-- end col-lg-6 -->
+                <div class="col-lg-4 col-md-4 col-sm-12 col-lg-offset-1 col-md-offset-1 clearfix">
+                    <div class="widget-title"><h3>INFORMAÇÕES</h3></div>
+                    <div class="contact_details">
+                        <div class="custom-box">
+                            <div class="contact_icons">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="custom-box-info">
+                                <p><a href="mailto:#">kaembalagens@outlook.com</a></p>
+                            </div>
+                        </div><!-- custom-box -->
+                        <div class="custom-box">
+                            <div class="contact_icons">
+                                <i class="fa fa-mobile-phone"></i>
+                            </div>
+                            <div class="custom-box-info">
+                                <p>(41) 3278-8418</p>
+                            </div>
+                        </div><!-- custom-box -->
+                        <div class="custom-box">
+                            <div class="contact_icons">
+                                <i class="fa fa-facebook"></i>
+                            </div>
+                            <div class="custom-box-info">
+                                <p>https://www.facebook.com/Ka-Embalagens/</p>
+                            </div>
+                        </div><!-- custom-box -->
+                        <div class="custom-box">
+                            <div class="contact_icons">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="custom-box-info">
+                                <p>Rua Bartolomeu Lourenço de Gusmão - Hauer, Curitiba - PR, 80050-540</p>
+                            </div>
+                        </div><!-- custom-box -->
+                    </div><!-- end contact_details -->
+                </div><!-- end col-lg-3 -->
+
+            </div><!-- end general_wrapper -->
+
+
+        </div><!-- fullwidth-post-wrapper -->
+    </div><!-- end container -->
+</section><!-- end section-single -->
+
+<section class="post-wrapper-top dm-shadow">
+    <div id="responsive_map"></div>
+</section><!-- end post-wrapper-top -->

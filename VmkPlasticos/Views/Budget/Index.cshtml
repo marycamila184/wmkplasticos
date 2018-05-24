@@ -1,0 +1,294 @@
+﻿@model BudgetModel
+
+@{
+    ViewBag.Title = "Orçamento";
+}
+
+<section class="post-wrapper-top dm-shadow">
+    <div class="container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li>Orçamento</li>
+            </ul><!-- end breadcrumb -->
+            <h2>Orçamento</h2>
+        </div><!-- end col-12 -->
+    </div><!-- end container -->
+</section><!-- end post-wrapper-top -->
+
+
+<section id="contact_page" class="section-single">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2 class="bigtitle">FAÇA SEU ORÇAMENTO</h2>
+            <h4 class="lead"> Se interessou por nossos produtos? Faça agora um orçamento sem compromisso.</p></h4>
+        </div><!-- end section-title -->
+        <div class="fullwidth-post-wrapper col-lg-12">
+            <div class="general_wrapper clearfix">
+                <div class="col-lg-8 col-lg-offset-2 col-md-offset-2 col-md-8 col-sm-12">
+                    <div class="widget-title text-center"><h3>ORÇAMENTO</h3></div>
+                    @if (ViewBag.MessageSuccess != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-success">
+                                    <strong>@ViewBag.MessageSuccess</strong>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (ViewBag.MessageError != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger">
+                                    <strong>@ViewBag.MessageError</strong>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @using (Html.BeginForm(actionName: "SendBudget", controllerName: "Budget", method: FormMethod.Post, htmlAttributes: new { @id = "form-budget" }))
+                    {
+                        @Html.ValidationSummary(true)
+                        <div id="lisProducts" style="display:none;"></div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", placeholder = "Nome" })
+                                @Html.ValidationMessageFor(n => n.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                                @Html.ValidationMessageFor(n => n.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 clearfix">
+                                @Html.TextBoxFor(m => m.Telefone, new { @class = "form-control", placeholder = "Telefone" })
+                                @Html.ValidationMessageFor(n => n.Telefone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <label for="linha">Linha de produtos:</label>
+                                <select class="form-control" name="listbox-linha" id="linha">
+                                    <option disabled selected>Selecione o produto:</option>
+                                    <option value="vmk">
+                                        VMK Plásticos (taças, canecas, long drink e copos)
+                                    </option>
+                                    <option value="ka">
+                                        KA Embalagens (potes, frascos e conta gotas)
+                                    </option>
+                                </select>
+                                <input id="Linha" name="Linha" type="hidden" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <label for="produto">Produtos:</label>
+                                <select class="form-control" name="listbox-linha-vmk" disabled id="linha-vmk">
+                                    <option disabled selected>Selecione o produto:</option>
+                                    <option value="Taça">
+                                        Taça Amarelo Vivo Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Azul Neon Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Azul Royal Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Branco Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Dourado Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Laranja Vivo Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Prateado Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Preto Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Rosa Bebê Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Roxo Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Verde Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Vermelho Neon Leitoso
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Azul Royal Cristal
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Preto Cristal
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Roxo Cristal
+                                    </option>
+                                    <option value="Taça">
+                                        Taça Vermelho Neon Cristal
+                                    </option>
+                                    <option value="Caneca">
+                                        Caneca Amarelo Leitoso
+                                    </option>
+                                    <option value="Caneca">
+                                        Caneca Branco Leitoso
+                                    </option>
+                                    <option value="Caneca">
+                                        Caneca Preto Leitoso
+                                    </option>
+                                    <option value="Caneca">
+                                        Caneca Rosa Neon Leitoso
+                                    </option>
+                                    <option value="Caneca">
+                                        Caneca Roxo Leitoso
+                                    </option>
+                                    <option value="Caneca">
+                                        Caneca Vermelho Leitoso
+                                    </option>
+                                    <option value="Caneca">
+                                        Caneca Preto Cristal
+                                    </option>
+                                    <option value="Caneca">
+                                        Caneca Roxo Leitoso
+                                    </option>
+                                    <option value="Caneca">
+                                        Caneca Transparente Cristal
+                                    </option>
+                                    <option value="Caneca">
+                                        Caneca Verde Neon Cristal
+                                    </option>
+                                    <option value="Caneca">
+                                        Caneca Vermelho Cristal
+                                    </option>
+                                    <option value="LongDrink">
+                                        Long Drink Amarelo Leitoso
+                                    </option>
+                                    <option value="LongDrink">
+                                        Long Drink Laranja Leitoso
+                                    </option>
+                                    <option value="LongDrink">
+                                        Long Drink Preto Leitoso
+                                    </option>
+                                    <option value="LongDrink">
+                                        Long Drink Rosa Bebê Leitoso
+                                    </option>
+                                    <option value="LongDrink">
+                                        Long Drink Verde Neon Leitoso
+                                    </option>
+                                    <option value="Copo">
+                                        Copo Azul Cristal
+                                    </option>
+                                    <option value="Copo">
+                                        Copo Transparente Cristal
+                                    </option>
+                                    <option value="Copo">
+                                        Copo Vermelho Cristal
+                                    </option>
+                                </select>
+                                <select class="form-control" name="listbox-linha-ka" disabled id="linha-ka" style="display: none">
+                                    <option disabled selected>Selecione o produto:</option>
+                                    <option value="ka">
+                                        Conta Gotas Branco
+                                    </option>
+                                    <option value="ka">
+                                        Conta Gotas Transparente
+                                    </option>
+                                    <option value="ka">
+                                        Frasco Grande Azul
+                                    </option>
+                                    <option value="ka">
+                                        Frasco Grande Branco
+                                    </option>
+                                    <option value="ka">
+                                        Frasco Grande Transparente
+                                    </option>
+                                    <option value="ka">
+                                        Frasco Pequeno Branco
+                                    </option>
+                                    <option value="ka">
+                                        Frasco Pequeno Transparente
+                                    </option>
+                                    <option value="ka">
+                                        Pote Branco
+                                    </option>
+                                    <option value="ka">
+                                        Pote Transparente
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="qtde-row" style="display: none;">
+                                <label for="produto">Quantidade:</label>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus" data-field="">
+                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                </button>
+                                            </span>
+                                            <input type="text" id="quantity" name="quantity" class="form-control input-number text-center" value="1" min="1">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <label id="unid-min-label" for="unid-min-label"></label>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                        <label id="qtde-min-label" for="qtde-min-label" class="text-danger" style="font-size: 12px;"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <center>
+                                    <div id="toolbar">
+                                        <a id="add-produto" class="btn btn-primary" style="margin-bottom: 30px; margin-top: 25px;" onclick="return addRow();">ADICIONAR</a>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <label for="cor" style="display: none">Produtos</label>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover" id="table-produtos">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Nome</th>
+                                                <th class="text-center">Quantidade</th>
+                                                <th class="text-center"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="text-center">
+                                    <a class="btn btn-primary" onclick="return makeListProducs();">ENVIAR ORÇAMENTO</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div><!-- end col-lg-6 -->
+            </div><!-- end general_wrapper -->
+        </div><!-- fullwidth-post-wrapper -->
+    </div><!-- end container -->
+</section><!-- end section-single -->
